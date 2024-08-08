@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.accordion {
+  width: 700px;
+  margin: 100px auto;
+}
+
+.accordion-item {}
+
+.accordion-container {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 24px;
+  row-gap: 32px;
+}
+
+.accordion-header {
+  /* display: grid;
+  grid-template-columns: auto 1fr auto; */
+  column-gap: 24px;
+}
+
+.number,
+.txt {
+  font-size: 24px;
+  font-weight: 500;
+  color: black;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: #087f5b;
+  transition: all 0.3s ease-in-out;
+
+}
+
+.accordion-summery {
+  grid-column: 2;
+  display: none;
+
+}
+
+.accordion-summery.show {
+  display: block;
+
+}
+
+.accordion-summery p {
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.accordion-summery ul {
+  color: #868e96;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
