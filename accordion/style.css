@@ -34,6 +34,7 @@
   font-size: 24px;
   font-weight: 500;
   color: black;
+
 }
 
 .icon {
@@ -70,6 +71,11 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.border {
+  /* color: #087f5b; */
+  border-top: 5px solid #087f5b;
 }
 
 .green {

@@ -8,9 +8,11 @@ accordionItems.forEach((item) => {
     const summary = item.querySelector('.accordion-summery');
     const icon = item.querySelector('.icon');
     const txt = item.querySelector('.txt');
-
+    const accordion = item.querySelector('.accordion-container');
     // Toggle the accordion summary visibility and icon rotation
+    accordion.classList.toggle('border');
     summary.classList.toggle('show');
+    // summary.classList.toggle('green');
     icon.classList.toggle('rotate');
     txt.classList.toggle('green');
 
@@ -20,6 +22,9 @@ accordionItems.forEach((item) => {
         const otherSummary = otherItem.querySelector('.accordion-summery');
         const otherIcon = otherItem.querySelector('.icon');
         const otherTxt = otherItem.querySelector('.txt');
+        const otherAccordion = otherItem.querySelector('.accordion-container');
+
+        otherAccordion.classList.remove('border');
         otherSummary.classList.remove('show');
         otherIcon.classList.remove('rotate');
         otherTxt.classList.remove('green');
