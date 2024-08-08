@@ -7,15 +7,20 @@
 .accordion {
   width: 700px;
   margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .accordion-item {}
 
 .accordion-container {
+  box-shadow: 0 0 32px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: auto 1fr auto;
   column-gap: 24px;
   row-gap: 32px;
+  padding: 24px;
 }
 
 .accordion-header {
