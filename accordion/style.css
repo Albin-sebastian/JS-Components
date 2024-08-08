@@ -35,8 +35,12 @@
   width: 24px;
   height: 24px;
   color: #087f5b;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 
+}
+
+.icon.rotate {
+  transform: rotate(180deg);
 }
 
 .accordion-summery {
@@ -61,4 +65,8 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.green {
+  color: #087f5b;
 }

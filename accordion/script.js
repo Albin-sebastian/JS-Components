@@ -1,28 +1,23 @@
 // Select all accordion items
 const accordionItems = document.querySelectorAll('.accordion-item');
 
-// Loop through each accordion item
+// Add event listener to each accordion item
 accordionItems.forEach((item) => {
+  item.addEventListener('click', async (e) => {
+    // Get the accordion summary and icon
+    const summary = item.querySelector('.accordion-summery');
+    const icon = item.querySelector('.icon');
+    const txt = item.querySelector('.txt');
+    // Toggle the accordion summary visibility
+    summary.classList.toggle('show');
 
-  // Select the accordion summary,text and icon within the current item
-  const accordionSummery = item.querySelector('.accordion-summery');
-  const icon = item.querySelector('.icon');
-  const txt = item.querySelector('.txt');
+    // Toggle the icon rotation
+    icon.classList.toggle('rotate');
 
-  // Add an event listener to the current item
-  item.addEventListener('click', () => {
-    // Check if the accordion summary is already shown
-    if (accordionSummery.classList.contains('show')) {
-      // If it's shown, hide it and rotate the icon back to 0 degrees
-      accordionSummery.classList.remove('show');
-
-      icon.style.transform = 'rotate(0deg)';
-      txt.style.color = "black";
-    } else {
-      // If it's not shown, show it and rotate the icon to 180 degrees
-      accordionSummery.classList.add('show');
-      icon.style.transform = 'rotate(180deg)';
-      txt.style.color = "green";
-    }
+    txt.classList.toggle('green');
+    // Use async/await to wait for the animation to finish
+    await new Promise((resolve) => {
+      setTimeout(resolve, 300);
+    });
   });
 });
