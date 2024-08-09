@@ -42,20 +42,27 @@ const carouselData = [
     }
   }
 ];
-let currentIndex = 1;
+let currentIndex = 0;
 
-const updateCarousel = () => {
+const updateCarousel = async () => {
+  try {
+    if (carouselData.length === 0)
+      return false;
 
-  if (carouselData.length === 0)
+    const { img: imgUrl, testimonial } = carouselData[currentIndex];
+    img.src = imgUrl;
+    await new Promise(resolve => {
+      img.onload = resolve;
+    });
+    text.textContent = testimonial.text;
+    author.textContent = testimonial.author;
+    job.textContent = testimonial.job;
+    dots.forEach((dot, index) => dot.classList.toggle('active', index === currentIndex));
+  }
+  catch (error) {
+    console.error("Error updating carousel", error);
+  }
 
-    return;
-
-  const { img: imgUrl, testimonial } = carouselData[currentIndex];
-  img.src = imgUrl;
-  text.textContent = testimonial.text;
-  author.textContent = testimonial.author;
-  job.textContent = testimonial.job;
-  dots.forEach((dot, index) => dot.classList.toggle('active', index === currentIndex));
 };
 
 
@@ -70,14 +77,24 @@ currentIndex - 1 = 2
 2 + 4 = 6
 6 % 4 = 2 (resulting index is 2, which is the second-to-last item in the array) */
 
-const handleLeftClick = () => {
-  currentIndex = (currentIndex - 1 + carouselData.length) % carouselData.length;
-  updateCarousel();
+const handleLeftClick = async () => {
+  try {
+    currentIndex = (currentIndex - 1 + carouselData.length) % carouselData.length;
+    await updateCarousel();
+  }
+  catch (error) {
+    console.error('Error handling left click:', error);
+  }
 };
 
-const handleRightClick = () => {
-  currentIndex = (currentIndex + 1) % carouselData.length;
-  updateCarousel();
+const handleRightClick = async () => {
+  try {
+    currentIndex = (currentIndex + 1) % carouselData.length;
+    await updateCarousel();
+  }
+  catch (error) {
+    console.error('Error handling right click:', error);
+  }
 };
 
 
