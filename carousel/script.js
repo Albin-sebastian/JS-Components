@@ -45,42 +45,40 @@ const carouselData = [
 let currentIndex = 1;
 
 const updateCarousel = () => {
+
   if (carouselData.length === 0)
+
     return;
-  img.src = carouselData[currentIndex].img;
-  text.textContent = `${carouselData[currentIndex].testimonial.text}`;
-  author.textContent = `${carouselData[currentIndex].testimonial.author}`;
-  job.textContent = `${carouselData[currentIndex].testimonial.job}`
-  dots.forEach((dot, index) => {
-    dot.classList.remove('active');
-    if (index === currentIndex) {
-      dot.classList.add('active');
-    }
-  })
-  //dots.forEach((dot, index) => {
-  // dot.classList.toggle('active', index === currentIndex);});
-  // This uses the toggle method to add or remove the active class based on the condition index === currentIndex.
+
+  const { img: imgUrl, testimonial } = carouselData[currentIndex];
+  img.src = imgUrl;
+  text.textContent = testimonial.text;
+  author.textContent = testimonial.author;
+  job.textContent = testimonial.job;
+  dots.forEach((dot, index) => dot.classList.toggle('active', index === currentIndex));
 };
-;
+
+
+/* Suppose carouselData has 4 items, and currentIndex is 0.
+
+currentIndex - 1 = -1
+-1 + 4 = 3 (wrap around to the end of the array)
+3 % 4 = 3 (resulting index is 3, which is the last item in the array)
+Now, suppose currentIndex is 3 (the last item in the array).
+
+currentIndex - 1 = 2
+2 + 4 = 6
+6 % 4 = 2 (resulting index is 2, which is the second-to-last item in the array) */
 
 const handleLeftClick = () => {
-  if (currentIndex === 0) {
-    currentIndex = carouselData.length - 1;
-  } else {
-    currentIndex--;
-  }
+  currentIndex = (currentIndex - 1 + carouselData.length) % carouselData.length;
   updateCarousel();
-}
-const handleRightClick = () => {
-  if (currentIndex === carouselData.length - 1) {
-    currentIndex = 0
-  }
-  else {
-    currentIndex++;
-  }
-  updateCarousel();
-}
+};
 
+const handleRightClick = () => {
+  currentIndex = (currentIndex + 1) % carouselData.length;
+  updateCarousel();
+};
 
 
 btnLeft.addEventListener('click', handleLeftClick);
